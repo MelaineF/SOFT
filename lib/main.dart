@@ -1,6 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:logger/logger.dart';
+
+Logger logger = Logger(
+  printer: PrettyPrinter(
+      methodCount: 1,
+      // number of method calls to be displayed
+      errorMethodCount: 8,
+      // number of method calls if stacktrace is provided
+      lineLength: 200,
+      // width of the output
+      colors: true,
+      // Colorful log messages
+      printEmojis: true,
+      // Print an emoji for each log message
+      printTime: false // Should each log print contain a timestamp
+      ),
+);
 
 void main() {
   runApp(const MyApp());
