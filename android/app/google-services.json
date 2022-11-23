@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "890417218480",
+    "firebase_url": "https://soft-c8f3b-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "soft-c8f3b",
+    "storage_bucket": "soft-c8f3b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890417218480:android:b88a1bb5647147ebd90c75",
+        "android_client_info": {
+          "package_name": "com.example.soft_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "890417218480-252dsuc4avjktcputqhbsbs18c8b04eo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjOEnHdkhLSWSlJojmanW2kC16AtzsW2Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "890417218480-252dsuc4avjktcputqhbsbs18c8b04eo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

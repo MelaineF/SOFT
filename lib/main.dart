@@ -1,10 +1,14 @@
+import 'package:Swipe/core/firebase/database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'features/home_page/presentation/page/home_page.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: 'assets/dev.env');
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
