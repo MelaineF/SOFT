@@ -4,7 +4,7 @@ import 'package:nanoid/nanoid.dart';
 import 'package:argon2/argon2.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class DatabaseService {
+class RealtimeDb {
   final FirebaseDatabase _database = FirebaseDatabase.instance;
   final _params = Argon2Parameters(
     Argon2Parameters.ARGON2_i,

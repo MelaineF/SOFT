@@ -1,4 +1,4 @@
-import 'package:Swipe/core/services/database.dart';
+import 'package:Swipe/core/firebase/database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -94,8 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
               AppLocalizations.of(context)!.helloWorld,
             ),
             TextButton(onPressed: () async {
-              var service = DatabaseService();
-              var userId = await service.addAnonUser();
+              var rtbd = RealtimeDb();
+              var userId = await rtbd.addAnonUser();
               if (userId.isNotEmpty) {
                 print('user $userId added');
               } else {
