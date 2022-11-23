@@ -1,10 +1,18 @@
 {
-    "@@x-loco-version": "1.0.26 20221028-1",
+    "@@x-loco-version": "1.0.27 20221112-1",
     "@@locale": "fr",
-    "@@last_modified": "2022-11-09T18:41:40+0100",
+    "@@last_modified": "2022-11-23T08:49:46+0100",
     "@@author": "Soft company",
-    "helloWorld": "Bonjour tout le monde 🧶🧶🧶🧵",
+    "helloWorld": "Bonjour tout le monde  !!🎨",
     "@helloWorld": {
-        "source_text": "Hello World 🎃🎃🎃"
+        "source_text": "Hello World !! ✨"
+    },
+    "ynovW": "Bonjour Ynov",
+    "@ynovW": {
+        "source_text": "Hello Ynov"
+    },
+    "mesTradB": "Un test de traduction",
+    "@mesTradB": {
+        "source_text": "A test with trad"
     }
 }

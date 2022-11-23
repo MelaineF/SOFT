@@ -1,9 +1,15 @@
 {
-    "@@x-loco-version": "1.0.26 20221028-1",
+    "@@x-loco-version": "1.0.27 20221112-1",
     "@@locale": "en",
-    "@@last_modified": "2022-11-09T18:41:40+0100",
+    "@@last_modified": "2022-11-23T08:49:46+0100",
     "@@author": "Soft company",
-    "helloWorld": "Hello World 🎃🎃🎃",
+    "helloWorld": "Hello World !! ✨",
     "@helloWorld": {
+    },
+    "ynovW": "Hello Ynov",
+    "@ynovW": {
+    },
+    "mesTradB": "A test with trad",
+    "@mesTradB": {
     }
 }

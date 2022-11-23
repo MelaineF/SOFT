@@ -1,4 +1,7 @@
 # SOFT
+The architecture project is based on the Clean Architecture.
+
+
 ## Multilanguage
 
 Creating multilingual texts requires several steps. :
