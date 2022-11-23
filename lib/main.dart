@@ -1,7 +1,10 @@
+import 'package:Swipe/core/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:logger/logger.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Logger logger = Logger(
   printer: PrettyPrinter(
@@ -19,7 +22,9 @@ Logger logger = Logger(
       ),
 );
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: 'assets/dev.env');
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -88,6 +93,15 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               AppLocalizations.of(context)!.helloWorld,
             ),
+            TextButton(onPressed: () async {
+              var service = DatabaseService();
+              var userId = await service.addAnonUser();
+              if (userId.isNotEmpty) {
+                print('user $userId added');
+              } else {
+                print('Could not add user to the database');
+              }
+            }, child: Text('test db'))
           ],
         ),
       ),
