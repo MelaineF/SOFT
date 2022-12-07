@@ -102,6 +102,15 @@ abstract class AppColors {
 
   static const Color sliver = Color(0xFFBDBDBD);
 
+  // ------------------------------------------------
+  // Couleurs V1 au 23-11-2022
+  static const Color c1 = Color(0xFF8333E9);
+  static const Color c2 = Color(0xFFFFA826);
+  static const Color c3 = Color(0xFFE82577);
+  static const Color c4 = Color(0xFFFDB095);
+
+  // ------------------------------------------------
+
   static List<Color> whiteTemperatureGradient = <Color>[
     const Color(0x00c5f6ff).withOpacity(1.0),
     const Color(0x00ffffff).withOpacity(1.0),
