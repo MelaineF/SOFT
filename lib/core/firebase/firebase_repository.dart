@@ -1,13 +1,14 @@
 import 'dart:convert';
+import 'package:Swipe/features/root/data/models/firebase_data.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-abstract class FirebaseRepository<T> {
+abstract class FirebaseRepository<T extends IFirebaseData> {
   FirebaseDatabase database = FirebaseDatabase.instance;
 
   String create(T obj);
 
   bool update(String url, T obj) {
-    database.ref().child(url).update(jsonEncode(obj) as Map<String, Object?>);
+    database.ref().child(url).update(obj.toJson());
     return true;
   }
 

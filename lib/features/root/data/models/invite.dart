@@ -1,4 +1,6 @@
-class Invite {
+import 'package:Swipe/features/root/data/models/firebase_data.dart';
+
+class Invite implements IFirebaseData {
   String description;
   String sender;
   String receiver;
@@ -10,6 +12,7 @@ class Invite {
         sender = json['sender'],
         receiver = json['receiver'];
 
+  @override
   Map<String, Object?> toJson() => {
     'description': description,
     'sender': sender,

@@ -1,7 +1,8 @@
 import 'dart:convert';
+import 'package:Swipe/features/root/data/models/firebase_data.dart';
 import 'package:Swipe/features/root/data/models/image.dart';
 
-class Collab {
+class Collab implements IFirebaseData {
   String title;
   String description;
   List<Image> images;
@@ -21,6 +22,7 @@ class Collab {
         receiver = json['receiver'],
         isFinished = json['is_finished'];
 
+  @override
   Map<String, Object?> toJson() => {
     'title': title,
     'description': description,

@@ -1,4 +1,6 @@
-class Message {
+import 'package:Swipe/features/root/data/models/firebase_data.dart';
+
+class Message implements IFirebaseData {
   String content;
   DateTime timestamp;
   String sender;
@@ -12,6 +14,7 @@ class Message {
         sender = json['sender'],
         receiver = json['receiver'];
 
+  @override
   Map<String, Object?> toJson() => {
     'content': content,
     'timestamp': timestamp,

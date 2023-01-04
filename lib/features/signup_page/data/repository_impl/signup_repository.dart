@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:typed_data';
 import 'package:Swipe/core/firebase/firebase_repository.dart';
 import 'package:Swipe/features/root/data/models/user.dart';
@@ -29,7 +28,7 @@ class SignupRepository extends FirebaseRepository<User> {
     obj.password = block.toHexString();
 
     String id = nanoid();
-    database.ref('$baseUrl$id').set(jsonEncode(obj));
+    database.ref('$baseUrl$id').set(obj.toJson());
     return id;
   }
 }

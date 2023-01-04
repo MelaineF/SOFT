@@ -1,4 +1,6 @@
-class User {
+import 'package:Swipe/features/root/data/models/firebase_data.dart';
+
+class User implements IFirebaseData {
   String email;
   String firstName;
   String lastName;
@@ -12,6 +14,7 @@ class User {
         lastName = json['last_name'],
         password = json['password'];
 
+  @override
   Map<String, Object?> toJson() => {
     'email': email,
     'first_name': firstName,
