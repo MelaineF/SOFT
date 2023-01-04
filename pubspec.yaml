@@ -53,6 +53,7 @@ dependencies:
   auto_route: ^5.0.4
   salomon_bottom_bar: ^3.3.1
   card_swiper : ^2.0.1
+  lottie: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +68,7 @@ dev_dependencies:
   auto_route_generator: ^5.0.3
   build_runner: ^2.0.0
   json_serializable: ^6.0.0
+  connectivity_plus: ^2.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -77,6 +79,7 @@ flutter:
     - assets/dev.env
     - assets/prod.env
     - assets/images/
+    - assets/lotties/
   generate: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
