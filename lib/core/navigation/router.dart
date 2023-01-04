@@ -3,14 +3,18 @@ import 'package:Swipe/features/home_content_creator_feature/presentation/page/ho
 import 'package:Swipe/features/profil_brand_feature/presentation/page/profil_brand_page.dart';
 import 'package:Swipe/features/profil_content_creator_feature/presentation/page/profil_content_creator_page.dart';
 import 'package:Swipe/features/root/presentation/page/root_page.dart';
+import 'package:Swipe/features/splash_screen/presentation/page/spash_screen.dart';
 import 'package:auto_route/annotations.dart';
+
+import '../../features/splash_screen_feature/presentation/page/spash_screen.dart';
 
 @MaterialAutoRouter(
   routes: <AutoRoute>[
+    AutoRoute(page: SplashScreenPage, initial: true),
     AutoRoute(
-      path: '/',
+      path: '/home',
       page: RootPage,
-      initial: true,
+      //initial: true,
       children: <AutoRoute>[
         AutoRoute(
           path: 'home-brand',
