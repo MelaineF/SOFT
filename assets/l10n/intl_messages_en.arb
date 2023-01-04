@@ -1,7 +1,7 @@
 {
     "@@x-loco-version": "1.0.27 20221112-1",
     "@@locale": "en",
-    "@@last_modified": "2022-11-23T08:49:46+0100",
+    "@@last_modified": "2022-12-07T18:36:58+0100",
     "@@author": "Soft company",
     "helloWorld": "Hello World !! ✨",
     "@helloWorld": {
@@ -11,5 +11,17 @@
     },
     "mesTradB": "A test with trad",
     "@mesTradB": {
+    },
+    "homeBrandPage": "homeBrandPage",
+    "@homeBrandPage": {
+    },
+    "homeContentCreatorPage": "homeContentCreatorPage",
+    "@homeContentCreatorPage": {
+    },
+    "profilBrandPage": "profilBrandPage",
+    "@profilBrandPage": {
+    },
+    "profilContentCreatorPage": "profilContentCreatorPage",
+    "@profilContentCreatorPage": {
     }
 }
