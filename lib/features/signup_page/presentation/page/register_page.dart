@@ -1,8 +1,10 @@
+import 'package:Swipe/features/signup_page/data/repository_impl/signup_repository.dart';
 import 'package:validators/validators.dart';
-import 'package:Swipe/core/firebase/database.dart';
 import 'package:Swipe/core/helper/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../../root/data/models/user.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -19,8 +21,7 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController password = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
         title: const Text("Register"),
       ),
@@ -99,9 +100,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       ElevatedButton(onPressed: () {
                         logger.d("login pressed");
                         if (_formKey.currentState?.validate() ?? false) {
-                          var rtdb = RealtimeDb();
-                          var added = rtdb.addUser(firstname.text, lastname.text, email.text, password.text);
-                          logger.d('is user added? $added');
+                          var service = SignupRepository();
+                          var userId = service.create(User(email.text, firstname.text, lastname.text, password.text));
+                          logger.d("added user '$userId'");
 
                           _formKey.currentState?.reset();
                           firstname.clear();
@@ -119,5 +120,4 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ),
     );
-  }
 }
