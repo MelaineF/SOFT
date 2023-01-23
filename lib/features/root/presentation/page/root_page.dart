@@ -1,4 +1,4 @@
-import 'package:Swipe/core/navigation/router.gr.dart';
+import 'package:Swipe/core/navigation/app.router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -11,21 +11,27 @@ class RootPage extends StatelessWidget {
         appBarBuilder: (_, TabsRouter tabsRouter) => AppBar(
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
+          automaticallyImplyLeading: false,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(
-                Icons.search_rounded,
-                size: 30,
-              ),
+              IconButton(
+                  icon: const Icon(Icons.search_rounded),
+                  iconSize: 30,
+                  onPressed: () {
+                    context.router.push(const MainSearchRoute());
+                  }),
               Image.asset(
                 'assets/images/logo.png',
                 width: 50,
                 height: 50,
               ),
-              const Icon(
-                Icons.reset_tv_rounded,
-                size: 30,
+              IconButton(
+                icon: const Icon(Icons.reset_tv_rounded),
+                iconSize: 30,
+                onPressed: () {
+                  context.router.push(const MyProfilBrandRoute());
+                },
               ),
             ],
           ),
@@ -33,9 +39,9 @@ class RootPage extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
         routes: const <PageRouteInfo>[
-          HomeBrandRouter(),
-          HomeContentCreatorRouter(),
-          ProfilBrandRouter(),
+          HomeBrandRoute(),
+          HomeContentCreatorRoute(),
+          ProfilContentCreatorRoute(),
         ],
         bottomNavigationBuilder: (_, TabsRouter tabsRouter) => SalomonBottomBar(
           margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
