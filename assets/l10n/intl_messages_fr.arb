@@ -1,7 +1,7 @@
 {
     "@@x-loco-version": "1.0.27 20221112-1",
     "@@locale": "fr",
-    "@@last_modified": "2022-12-07T18:36:58+0100",
+    "@@last_modified": "2023-01-20T12:24:42+0100",
     "@@author": "Soft company",
     "helloWorld": "Bonjour tout le monde  !!🎨",
     "@helloWorld": {
@@ -30,5 +30,53 @@
     "profilContentCreatorPage": "profilContentCreatorPage",
     "@profilContentCreatorPage": {
         "source_text": "profilContentCreatorPage"
+    },
+    "editProfil": "Editer le profile",
+    "@editProfil": {
+        "source_text": "Edit profil"
+    },
+    "editProduct": "Editer produit",
+    "@editProduct": {
+        "source_text": "Edit product"
+    },
+    "lastProduct": "Dernier produit",
+    "@lastProduct": {
+        "source_text": "Last product"
+    },
+    "collaborateWith": "A collaboré avec",
+    "@collaborateWith": {
+        "source_text": "Collaborated with"
+    },
+    "save": "Enregistrer",
+    "@save": {
+        "source_text": "Save"
+    },
+    "changePhotoProduct": "Changer l'image du produit",
+    "@changePhotoProduct": {
+        "source_text": "Change product picture"
+    },
+    "changeBanner": "Changer la bannière",
+    "@changeBanner": {
+        "source_text": "Change banner"
+    },
+    "request": "Demande",
+    "@request": {
+        "source_text": "Request"
+    },
+    "accept": "Accèpter",
+    "@accept": {
+        "source_text": "Accept"
+    },
+    "refuse": "Refuser",
+    "@refuse": {
+        "source_text": "Refuse"
+    },
+    "details": "Détails",
+    "@details": {
+        "source_text": "Details"
+    },
+    "search": "Rechercher",
+    "@search": {
+        "source_text": "Search"
     }
 }

@@ -1,7 +1,7 @@
 {
     "@@x-loco-version": "1.0.27 20221112-1",
     "@@locale": "en",
-    "@@last_modified": "2022-12-07T18:36:58+0100",
+    "@@last_modified": "2023-01-20T12:24:42+0100",
     "@@author": "Soft company",
     "helloWorld": "Hello World !! ✨",
     "@helloWorld": {
@@ -23,5 +23,41 @@
     },
     "profilContentCreatorPage": "profilContentCreatorPage",
     "@profilContentCreatorPage": {
+    },
+    "editProfil": "Edit profil",
+    "@editProfil": {
+    },
+    "editProduct": "Edit product",
+    "@editProduct": {
+    },
+    "lastProduct": "Last product",
+    "@lastProduct": {
+    },
+    "collaborateWith": "Collaborated with",
+    "@collaborateWith": {
+    },
+    "save": "Save",
+    "@save": {
+    },
+    "changePhotoProduct": "Change product picture",
+    "@changePhotoProduct": {
+    },
+    "changeBanner": "Change banner",
+    "@changeBanner": {
+    },
+    "request": "Request",
+    "@request": {
+    },
+    "accept": "Accept",
+    "@accept": {
+    },
+    "refuse": "Refuse",
+    "@refuse": {
+    },
+    "details": "Details",
+    "@details": {
+    },
+    "search": "Search",
+    "@search": {
     }
 }
