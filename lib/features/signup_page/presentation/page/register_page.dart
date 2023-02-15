@@ -1,4 +1,3 @@
-import 'package:Swipe/features/signin_page/data/repository_impl/signin_repository.dart';
 import 'package:Swipe/features/signup_page/data/repository_impl/signup_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:validators/validators.dart';
@@ -101,26 +100,31 @@ class _RegisterPageState extends State<RegisterPage> {
                         logger.d("login pressed");
                         if (_formKey.currentState?.validate() ?? false) {
                           try {
-                            final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                            await FirebaseAuth.instance.createUserWithEmailAndPassword(
                               email: email.text,
                               password: password.text,
                             );
                             SignupRepository().currentUser = FirebaseAuth.instance.currentUser;
+                            _formKey.currentState?.reset();
+                            firstname.clear();
+                            lastname.clear();
+                            email.clear();
+                            password.clear();
                           } on FirebaseAuthException catch (e) {
+                            String? message;
                             if (e.code == 'weak-password') {
-                              logger.e("The password provided is too weak.");
+                              message = "The password provided is too weak.";
                             } else if (e.code == 'email-already-in-use') {
-                              logger.e("An account already exists for that email.");
+                              message = "An account already exists for that email.";
+                            } else {
+                              message = e.message;
                             }
+
+                            logger.e(message);
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message!)));
                           } catch (e) {
                             logger.e(e);
                           }
-
-                          _formKey.currentState?.reset();
-                          firstname.clear();
-                          lastname.clear();
-                          email.clear();
-                          password.clear();
                         } else {
                           logger.e("Could not add user, something is missing");
                         }
