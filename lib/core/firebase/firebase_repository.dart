@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:Swipe/features/root/data/models/firebase_data.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class FirebaseRepository<T extends IFirebaseData> {
   FirebaseDatabase database = FirebaseDatabase.instance;
+  User? currentUser;
+
+  bool isLoggedIn() => currentUser != null;
 
   String create(T obj);
 

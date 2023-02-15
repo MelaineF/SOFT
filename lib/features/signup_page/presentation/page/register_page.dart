@@ -1,10 +1,10 @@
+import 'package:Swipe/features/signin_page/data/repository_impl/signin_repository.dart';
 import 'package:Swipe/features/signup_page/data/repository_impl/signup_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:validators/validators.dart';
 import 'package:Swipe/core/helper/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../../../root/data/models/user.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -97,12 +97,24 @@ class _RegisterPageState extends State<RegisterPage> {
                           return null;
                         },
                       ),
-                      ElevatedButton(onPressed: () {
+                      ElevatedButton(onPressed: () async {
                         logger.d("login pressed");
                         if (_formKey.currentState?.validate() ?? false) {
-                          var service = SignupRepository();
-                          var userId = service.create(User(email.text, firstname.text, lastname.text, password.text));
-                          logger.d("added user '$userId'");
+                          try {
+                            final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                              email: email.text,
+                              password: password.text,
+                            );
+                            SignupRepository().currentUser = FirebaseAuth.instance.currentUser;
+                          } on FirebaseAuthException catch (e) {
+                            if (e.code == 'weak-password') {
+                              logger.e("The password provided is too weak.");
+                            } else if (e.code == 'email-already-in-use') {
+                              logger.e("An account already exists for that email.");
+                            }
+                          } catch (e) {
+                            logger.e(e);
+                          }
 
                           _formKey.currentState?.reset();
                           firstname.clear();
