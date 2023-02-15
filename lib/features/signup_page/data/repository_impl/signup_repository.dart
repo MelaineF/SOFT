@@ -23,9 +23,9 @@ class SignupRepository extends FirebaseRepository<User> {
 
   @override
   String create(User obj) {
-    Uint8List block = Uint8List(32);
-    _argon2.generateBytes(_params.converter.convert(obj.password), block, 0, block.length);
-    obj.password = block.toHexString();
+    //Uint8List block = Uint8List(32);
+    //_argon2.generateBytes(_params.converter.convert(obj.password), block, 0, block.length);
+    //obj.password = block.toHexString();
 
     String id = nanoid();
     database.ref('$baseUrl$id').set(obj.toJson());
