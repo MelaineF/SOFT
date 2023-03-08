@@ -1,14 +1,14 @@
+import 'package:Swipe/features/profil_feature/presentation/widget/product_picture.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../widget/product_picture.dart';
 
 class EditProfilBrandPage extends StatelessWidget {
   EditProfilBrandPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) =>
+      Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Center(
@@ -73,7 +73,7 @@ class EditProfilBrandPage extends StatelessWidget {
                   ),
                   const ProductPicture(
                     pictureUrl:
-                        'https://contents.mediadecathlon.com/p1259581/k\$47977d533ae46915ab592bab64ec7153/sq/tente-de-camping-2-seconds-3-places.jpg?format=auto&f=720x720',
+                    'https://contents.mediadecathlon.com/p1259581/k\$47977d533ae46915ab592bab64ec7153/sq/tente-de-camping-2-seconds-3-places.jpg?format=auto&f=720x720',
                   ),
                   InkWell(
                     child: Text(
@@ -111,7 +111,10 @@ class EditProfilBrandPage extends StatelessWidget {
                   ),
                   Expanded(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.9,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width * 0.9,
                       padding: const EdgeInsets.all(16.0),
                       decoration: BoxDecoration(
                         border: Border.all(),

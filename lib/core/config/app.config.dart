@@ -15,5 +15,7 @@ abstract class AppConfig {
 
   static String get logo => '$_assets/$_images/logo.png';
 
+  static String get logo2 => '$_assets/$_images/logo2.png';
+
   static String get tente => '$_assets/$_images/tente.png';
 }

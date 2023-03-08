@@ -1,19 +1,18 @@
 import 'dart:async';
-import 'dart:developer' as developer;
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class CheckConnexion extends StatefulWidget {
-  const CheckConnexion({Key? key}) : super(key: key);
+class CheckConnexionPage extends StatefulWidget {
+  const CheckConnexionPage({Key? key}) : super(key: key);
 
   @override
-  State<CheckConnexion> createState() => _CheckConnexionState();
+  State<CheckConnexionPage> createState() => _CheckConnexionPageState();
 }
 
-class _CheckConnexionState extends State<CheckConnexion> {
+class _CheckConnexionPageState extends State<CheckConnexionPage> {
   // Etat de la connection réseau téléphone/wifi/bluethoot/none, etc
   ConnectivityResult _connectionStatus = ConnectivityResult.none;
 
@@ -43,10 +42,11 @@ class _CheckConnexionState extends State<CheckConnexion> {
     try {
       result = await _connectivity.checkConnectivity();
     } on PlatformException catch (e) {
+      debugPrint('Etat de la connectivité e = $e');
       return;
     }
     if (!mounted) {
-      return Future.value(null);
+      return Future<void>.value();
     }
     return _updateConnectionStatus(result);
   }
@@ -58,31 +58,37 @@ class _CheckConnexionState extends State<CheckConnexion> {
       if (_connectionStatus != ConnectivityResult.mobile &&
           _connectionStatus != ConnectivityResult.wifi) {
         showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                backgroundColor: Colors.white,
-                content: const Text("Pas de connexion Internet",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.black)),
-                actions: [
-                  TextButton(
-                      child: const Text(
-                        "Ok",
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
-                      ),
-                      onPressed: () {
-                        // Quitte l'application lorsque l'utilisateur presse OK
-                        SystemNavigator.pop();
-                        exit(0);
-                      }),
-                ],
-              );
-            });
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) => AlertDialog(
+            backgroundColor: Colors.white,
+            content: const Text(
+              'Pas de connexion Internet',
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.normal,
+                color: Colors.black,
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text(
+                  'Ok',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onPressed: () {
+                  // Quitte l'application lorsque
+                  // l'utilisateur presse OK
+                  SystemNavigator.pop();
+                  exit(0);
+                },
+              ),
+            ],
+          ),
+        );
       } else {
         // Show the splashscreen page
 

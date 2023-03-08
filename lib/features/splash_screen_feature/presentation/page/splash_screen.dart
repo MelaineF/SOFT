@@ -49,7 +49,7 @@ class _SplashScreen extends State<SplashScreenPage>
                       width: value,
                       height: value,
                     ),
-                    onEnd: () => context.router.push(const RootRoute()),
+                    onEnd: () => context.router.push(RootRoute()),
                   ),
                   const SizedBox(
                     height: 30,
