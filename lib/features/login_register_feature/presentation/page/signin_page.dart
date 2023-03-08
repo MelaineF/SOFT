@@ -1,6 +1,6 @@
 import 'package:Swipe/core/helper/logger.dart';
 import 'package:Swipe/core/widget/custom_outlined_button.dart';
-import 'package:Swipe/features/signup_page/data/repository_impl/signup_repository.dart';
+import 'package:Swipe/features/login_register_feature/data/repository_impl/signup_repository.dart';
 import 'package:Swipe/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

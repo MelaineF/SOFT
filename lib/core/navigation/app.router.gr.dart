@@ -20,7 +20,13 @@ import '../../features/home/presentation/page/home_brand_page.dart' as _i14;
 import '../../features/home/presentation/page/home_content_creator_page.dart'
     as _i15;
 import '../../features/home/presentation/page/home_page.dart' as _i7;
-import '../../features/lost_connection/presentation/page/checkConnexion.dart'
+import '../../features/login_register_feature/presentation/page/first_connection_page.dart'
+    as _i4;
+import '../../features/login_register_feature/presentation/page/register_page.dart'
+    as _i6;
+import '../../features/login_register_feature/presentation/page/signin_page.dart'
+    as _i5;
+import '../../features/lost_connection/presentation/page/checkConnexion_page.dart'
     as _i2;
 import '../../features/profil_feature/presentation/page/collaboration_brand_page.dart'
     as _i11;
@@ -32,14 +38,10 @@ import '../../features/profil_feature/presentation/page/my_profil_brand_page.dar
     as _i8;
 import '../../features/profil_feature/presentation/page/profil_content_creator_page.dart'
     as _i16;
-import '../../features/root_feature/presentation/widget/root.dart' as _i3;
+import '../../features/root_feature/presentation/page/root_page.dart' as _i3;
 import '../../features/search_feature/presentation/page/main_search_page.dart'
     as _i12;
-import '../../features/signin_page/presentation/page/first_connexion_page.dart'
-    as _i4;
-import '../../features/signin_page/presentation/page/signin_page.dart' as _i5;
-import '../../features/signup_page/presentation/page/register_page.dart' as _i6;
-import '../../features/splash_screen_feature/presentation/page/splash_screen.dart'
+import '../../features/splash_screen_feature/presentation/page/splash_screen_page.dart'
     as _i1;
 
 class AppRouter extends _i17.RootStackRouter {

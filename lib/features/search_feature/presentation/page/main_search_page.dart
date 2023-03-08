@@ -1,7 +1,6 @@
+import 'package:Swipe/features/search_feature/presentation/widget/search_field.widget.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-
-import '../widget/search_field.widget.dart';
 
 class MainSearchPage extends StatelessWidget {
   const MainSearchPage({Key? key}) : super(key: key);
