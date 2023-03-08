@@ -1,7 +1,8 @@
 import 'dart:convert';
-import 'package:Swipe/features/root/data/models/firebase_data.dart';
-import 'package:firebase_database/firebase_database.dart';
+
+import 'package:Swipe/features/home/data/models/firebase_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 abstract class FirebaseRepository<T extends IFirebaseData> {
   FirebaseDatabase database = FirebaseDatabase.instance;

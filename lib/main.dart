@@ -1,4 +1,5 @@
 import 'package:Swipe/core/navigation/app.router.gr.dart';
+import 'package:Swipe/core/util/auth_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -8,13 +9,24 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 void main() async {
   await dotenv.load(fileName: 'assets/dev.env');
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-  final AppRouter appRouter = AppRouter();
+  static MyAppState of(BuildContext context) =>
+      context.findAncestorStateOfType<MyAppState>()!;
+
+  @override
+  State<MyApp> createState() => MyAppState();
+}
+
+class MyAppState extends State<MyApp> {
+  final AuthService authService = AuthService();
+  late final AppRouter appRouter = AppRouter();
+
+  // AppRouter(routeGuard: RouteGuard(authService));
 
   @override
   Widget build(BuildContext context) => MaterialApp.router(
@@ -22,9 +34,11 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        // List of all supported locales (language code followed by country code).
-        // For this example, I'll be using Great Britain english and the French french
-        supportedLocales: const [
+        // List of all supported locales (language code followed
+        // by country code).
+        // For this example, I'll be using Great Britain english
+        // and the French french
+        supportedLocales: const <Locale>[
           Locale('en', ''),
           Locale('fr', ''),
         ],
@@ -33,7 +47,8 @@ class MyApp extends StatelessWidget {
           AppLocalizations.delegate,
           // Built-in delegate for the localisation of the Material widgets
           GlobalMaterialLocalizations.delegate,
-          // Built-in localisation for text direction (left-to-right or right-to-left).
+          // Built-in localisation for text direction (left-to-right
+          // or right-to-left).
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
@@ -45,7 +60,8 @@ class MyApp extends StatelessWidget {
             }
           }
 
-          // If the language of the user isn't supported, the default locale should be used.
+          // If the language of the user isn't supported, the default locale
+          // should be used.
           return supportedLocales.first;
         },
         routerDelegate: appRouter.delegate(),

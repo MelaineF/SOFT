@@ -1,6 +1,5 @@
-import 'dart:typed_data';
 import 'package:Swipe/core/firebase/firebase_repository.dart';
-import 'package:Swipe/features/root/data/models/user.dart';
+import 'package:Swipe/features/home/data/models/user.dart';
 import 'package:argon2/argon2.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:nanoid/nanoid.dart';
