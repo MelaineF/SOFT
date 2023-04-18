@@ -1,9 +1,7 @@
-import 'dart:typed_data';
 import 'package:Swipe/core/firebase/firebase_repository.dart';
 import 'package:Swipe/features/root/data/models/user.dart';
 import 'package:argon2/argon2.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:nanoid/nanoid.dart';
 
 class SignupRepository extends FirebaseRepository<User> {
   SignupRepository() {
@@ -23,11 +21,9 @@ class SignupRepository extends FirebaseRepository<User> {
 
   @override
   String create(User obj) {
-    //Uint8List block = Uint8List(32);
-    //_argon2.generateBytes(_params.converter.convert(obj.password), block, 0, block.length);
-    //obj.password = block.toHexString();
+    if (!isLoggedIn()) return '';
 
-    String id = nanoid();
+    String id = currentUser?.uid ?? 'nop';
     database.ref('$baseUrl$id').set(obj.toJson());
     return id;
   }

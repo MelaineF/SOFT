@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 abstract class FirebaseRepository<T extends IFirebaseData> {
   FirebaseDatabase database = FirebaseDatabase.instance;
   User? currentUser;
+  String? fcmToken;
 
   bool isLoggedIn() => currentUser != null;
 
