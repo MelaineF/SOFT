@@ -1,12 +1,18 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 
+import '../widget/swipe_card.dart';
+
 class HomeBrandPage extends StatefulWidget {
   const HomeBrandPage({Key? key}) : super(key: key);
 
   @override
   State<HomeBrandPage> createState() => _HomeBrandPageState();
 }
+
+// 'assets/images/card_humain_1.png'
+// 'assets/images/card_humain_2.png'
+// 'assets/images/card_humain_3.png'
 
 class _HomeBrandPageState extends State<HomeBrandPage> {
   @override
@@ -21,40 +27,22 @@ class _HomeBrandPageState extends State<HomeBrandPage> {
               itemBuilder: (BuildContext context, int index) {
                 fit:
                 BoxFit.fill;
-
                 switch (index) {
+                  case 0:
+                    return const SwipeCard(
+                      picturePath: 'assets/images/card_humain_1.png',
+                    );
                   case 1:
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(20), // Image border
-                      child: SizedBox.fromSize(
-                        size: const Size.fromRadius(48), // Image radius
-                        child: Image.asset(
-                          'assets/images/card_humain_1.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                    return const SwipeCard(
+                      picturePath: 'assets/images/card_humain_2.png',
                     );
                   case 2:
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(20), // Image border
-                      child: SizedBox.fromSize(
-                        size: const Size.fromRadius(48), // Image radius
-                        child: Image.asset(
-                          'assets/images/card_humain_2.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                    return const SwipeCard(
+                      picturePath: 'assets/images/card_humain_3.png',
                     );
                   default:
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(20), // Image border
-                      child: SizedBox.fromSize(
-                        size: const Size.fromRadius(48), // Image radius
-                        child: Image.asset(
-                          'assets/images/card_humain_3.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                    return const SwipeCard(
+                      picturePath: 'assets/images/card_humain_1.png',
                     );
                 }
               },

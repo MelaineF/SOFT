@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "890417218480",
-    "firebase_url": "https://soft-c8f3b-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "soft-c8f3b",
-    "storage_bucket": "soft-c8f3b.appspot.com"
+    "project_number": "434180983527",
+    "project_id": "soft-c854d",
+    "storage_bucket": "soft-c854d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:890417218480:android:b88a1bb5647147ebd90c75",
+        "mobilesdk_app_id": "1:434180983527:android:213d821c01e9a261413042",
         "android_client_info": {
           "package_name": "com.example.soft_mobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "890417218480-252dsuc4avjktcputqhbsbs18c8b04eo.apps.googleusercontent.com",
+          "client_id": "434180983527-6tr9lu9omdp6lvs1ubklg462up8seudo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.soft_mobile",
+            "certificate_hash": "1820b5e2ff1b166abe1f36d866980357c1593207"
+          }
+        },
+        {
+          "client_id": "434180983527-l1ef8jf4b1ct25r01lii81apmf0ornja.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCjOEnHdkhLSWSlJojmanW2kC16AtzsW2Q"
+          "current_key": "AIzaSyAhKPug4dVGZ0YyEPnK0qXKbiauXoqNiyM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "890417218480-252dsuc4avjktcputqhbsbs18c8b04eo.apps.googleusercontent.com",
+              "client_id": "434180983527-l1ef8jf4b1ct25r01lii81apmf0ornja.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

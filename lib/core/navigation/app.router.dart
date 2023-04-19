@@ -16,6 +16,8 @@ import 'package:Swipe/features/search_feature/presentation/page/main_search_page
 import 'package:Swipe/features/splash_screen_feature/presentation/page/splash_screen_page.dart';
 import 'package:auto_route/annotations.dart';
 
+import '../../features/chat/presentation/page/chat_page.dart';
+
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
@@ -67,6 +69,9 @@ import 'package:auto_route/annotations.dart';
     ),
     AutoRoute(
       page: SettingPage,
+    ),
+    AutoRoute(
+      page: ChatPage,
     ),
   ],
 )

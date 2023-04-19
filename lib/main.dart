@@ -6,6 +6,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'core/helper/app_colors.dart';
+
 void main() async {
   await dotenv.load(fileName: 'assets/dev.env');
   await Firebase.initializeApp();
@@ -33,6 +35,7 @@ class MyAppState extends State<MyApp> {
         title: 'Swipe project',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          // primaryColor: AppColors.white,
         ),
         // List of all supported locales (language code followed
         // by country code).

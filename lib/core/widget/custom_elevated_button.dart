@@ -7,6 +7,8 @@ class CustomElevatedButtonButtonWidget extends StatelessWidget {
     this.enable = true,
     required this.label,
     required this.onTape,
+    this.width = double.infinity,
+    this.fontSize = 20,
     Key? key,
   }) : super(key: key);
 
@@ -14,6 +16,8 @@ class CustomElevatedButtonButtonWidget extends StatelessWidget {
   final bool enable;
   final String label;
   final Function() onTape;
+  final double width;
+  final double fontSize;
 
   final ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
     textStyle: const TextStyle(fontSize: 15),
@@ -26,7 +30,7 @@ class CustomElevatedButtonButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         children: <Widget>[
           SizedBox(
-            width: double.infinity,
+            width: width,
             child: ElevatedButton(
               style: elevatedButtonStyle,
               onPressed: loading || !enable ? null : onTape,
@@ -37,12 +41,12 @@ class CustomElevatedButtonButtonWidget extends StatelessWidget {
                   : Text(
                       label,
                       style: enable
-                          ? const TextStyle(
-                              fontSize: 20,
+                          ? TextStyle(
+                              fontSize: fontSize,
                               fontWeight: FontWeight.w600,
                             )
-                          : const TextStyle(
-                              fontSize: 20,
+                          : TextStyle(
+                              fontSize: fontSize,
                               fontWeight: FontWeight.w600,
                             ),
                     ),

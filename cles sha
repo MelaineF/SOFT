@@ -1,0 +1,12 @@
+----------
+
+> Task :shared_preferences_android:signingReport
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\HomeAureliePiwi\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: 4C:6B:71:68:3B:9D:63:02:50:4C:16:D3:74:01:A2:29
+SHA1: 18:20:B5:E2:FF:1B:16:6A:BE:1F:36:D8:66:98:03:57:C1:59:32:07
+SHA-256: 53:E7:5C:E0:75:99:DE:60:88:63:C0:77:71:C3:94:A0:46:F7:82:C0:B2:19:EC:D2:AF:C6:93:89:EB:7A:18:2D
+Valid until: dimanche 23 fÚvrier 2053
+----------

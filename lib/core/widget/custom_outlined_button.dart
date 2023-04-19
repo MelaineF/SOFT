@@ -7,6 +7,8 @@ class CustomOutlinedButtonButtonWidget extends StatelessWidget {
     this.enable = true,
     required this.label,
     required this.onTape,
+    this.width = double.infinity,
+    this.fontSize = 20,
     Key? key,
   }) : super(key: key);
 
@@ -14,6 +16,8 @@ class CustomOutlinedButtonButtonWidget extends StatelessWidget {
   final bool enable;
   final String label;
   final Function() onTape;
+  final double width;
+  final double fontSize;
 
   final ButtonStyle outlinedButtonStyle = OutlinedButton.styleFrom(
     textStyle: const TextStyle(fontSize: 15),
@@ -29,7 +33,7 @@ class CustomOutlinedButtonButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         children: <Widget>[
           SizedBox(
-            width: double.infinity,
+            width: width,
             child: OutlinedButton(
               style: outlinedButtonStyle,
               onPressed: loading || !enable ? null : onTape,
@@ -40,12 +44,12 @@ class CustomOutlinedButtonButtonWidget extends StatelessWidget {
                   : Text(
                       label,
                       style: enable
-                          ? const TextStyle(
-                              fontSize: 20,
+                          ? TextStyle(
+                              fontSize: fontSize,
                               fontWeight: FontWeight.w600,
                             )
-                          : const TextStyle(
-                              fontSize: 20,
+                          : TextStyle(
+                              fontSize: fontSize,
                               fontWeight: FontWeight.w600,
                             ),
                     ),

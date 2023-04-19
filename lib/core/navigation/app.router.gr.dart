@@ -11,14 +11,15 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i17;
-import 'package:flutter/material.dart' as _i18;
+import 'package:auto_route/auto_route.dart' as _i18;
+import 'package:flutter/material.dart' as _i19;
 
+import '../../features/chat/presentation/page/chat_page.dart' as _i14;
 import '../../features/commun_feature/presentation/page/setting_page.dart'
     as _i13;
-import '../../features/home/presentation/page/home_brand_page.dart' as _i14;
+import '../../features/home/presentation/page/home_brand_page.dart' as _i15;
 import '../../features/home/presentation/page/home_content_creator_page.dart'
-    as _i15;
+    as _i16;
 import '../../features/home/presentation/page/home_page.dart' as _i7;
 import '../../features/login_register_feature/presentation/page/first_connection_page.dart'
     as _i4;
@@ -37,27 +38,27 @@ import '../../features/profil_feature/presentation/page/invitation_page.dart'
 import '../../features/profil_feature/presentation/page/my_profil_brand_page.dart'
     as _i8;
 import '../../features/profil_feature/presentation/page/profil_content_creator_page.dart'
-    as _i16;
+    as _i17;
 import '../../features/root_feature/presentation/page/root_page.dart' as _i3;
 import '../../features/search_feature/presentation/page/main_search_page.dart'
     as _i12;
 import '../../features/splash_screen_feature/presentation/page/splash_screen_page.dart'
     as _i1;
 
-class AppRouter extends _i17.RootStackRouter {
-  AppRouter([_i18.GlobalKey<_i18.NavigatorState>? navigatorKey])
+class AppRouter extends _i18.RootStackRouter {
+  AppRouter([_i19.GlobalKey<_i19.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i17.PageFactory> pagesMap = {
+  final Map<String, _i18.PageFactory> pagesMap = {
     SplashScreenRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i1.SplashScreenPage(),
       );
     },
     CheckConnexionRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i2.CheckConnexionPage(),
       );
@@ -65,20 +66,20 @@ class AppRouter extends _i17.RootStackRouter {
     RootRoute.name: (routeData) {
       final args =
           routeData.argsAs<RootRouteArgs>(orElse: () => const RootRouteArgs());
-      return _i17.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i3.RootPage(key: args.key),
       );
     },
     FirstConnectionRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i4.FirstConnectionPage(),
       );
     },
     SignInRoute.name: (routeData) {
       final args = routeData.argsAs<SignInRouteArgs>();
-      return _i17.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i5.SignInPage(
           key: args.key,
@@ -88,7 +89,7 @@ class AppRouter extends _i17.RootStackRouter {
     },
     RegisterRoute.name: (routeData) {
       final args = routeData.argsAs<RegisterRouteArgs>();
-      return _i17.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i6.RegisterPage(
           key: args.key,
@@ -97,13 +98,13 @@ class AppRouter extends _i17.RootStackRouter {
       );
     },
     HomeRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i7.HomePage(),
       );
     },
     MyProfilBrandRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i8.MyProfilBrandPage(),
       );
@@ -111,7 +112,7 @@ class AppRouter extends _i17.RootStackRouter {
     EditProfilBrandRoute.name: (routeData) {
       final args = routeData.argsAs<EditProfilBrandRouteArgs>(
           orElse: () => const EditProfilBrandRouteArgs());
-      return _i17.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i9.EditProfilBrandPage(key: args.key),
       );
@@ -119,7 +120,7 @@ class AppRouter extends _i17.RootStackRouter {
     InvitationRoute.name: (routeData) {
       final args = routeData.argsAs<InvitationRouteArgs>(
           orElse: () => const InvitationRouteArgs());
-      return _i17.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i10.InvitationPage(key: args.key),
       );
@@ -127,120 +128,136 @@ class AppRouter extends _i17.RootStackRouter {
     CollaborationBrandRoute.name: (routeData) {
       final args = routeData.argsAs<CollaborationBrandRouteArgs>(
           orElse: () => const CollaborationBrandRouteArgs());
-      return _i17.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i11.CollaborationBrandPage(key: args.key),
       );
     },
     MainSearchRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i12.MainSearchPage(),
       );
     },
     SettingRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i13.SettingPage(),
       );
     },
-    HomeBrandRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+    ChatRoute.name: (routeData) {
+      final args = routeData.argsAs<ChatRouteArgs>();
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i14.HomeBrandPage(),
+        child: _i14.ChatPage(
+          key: args.key,
+          groupId: args.groupId,
+          groupName: args.groupName,
+          userName: args.userName,
+        ),
+      );
+    },
+    HomeBrandRoute.name: (routeData) {
+      return _i18.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i15.HomeBrandPage(),
       );
     },
     HomeContentCreatorRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i15.HomeContentCreatorPage(),
+        child: const _i16.HomeContentCreatorPage(),
       );
     },
     ProfilContentCreatorRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i16.ProfilContentCreatorPage(),
+        child: const _i17.ProfilContentCreatorPage(),
       );
     },
   };
 
   @override
-  List<_i17.RouteConfig> get routes => [
-        _i17.RouteConfig(
+  List<_i18.RouteConfig> get routes => [
+        _i18.RouteConfig(
           SplashScreenRoute.name,
           path: '/',
         ),
-        _i17.RouteConfig(
+        _i18.RouteConfig(
           CheckConnexionRoute.name,
           path: '/check-connexion-page',
         ),
-        _i17.RouteConfig(
+        _i18.RouteConfig(
           RootRoute.name,
           path: '/root-page',
         ),
-        _i17.RouteConfig(
+        _i18.RouteConfig(
           FirstConnectionRoute.name,
           path: '/first-connection-page',
         ),
-        _i17.RouteConfig(
+        _i18.RouteConfig(
           SignInRoute.name,
           path: '/sign-in-page',
         ),
-        _i17.RouteConfig(
+        _i18.RouteConfig(
           RegisterRoute.name,
           path: '/register-page',
         ),
-        _i17.RouteConfig(
+        _i18.RouteConfig(
           HomeRoute.name,
           path: '/home-page',
           children: [
-            _i17.RouteConfig(
+            _i18.RouteConfig(
               HomeBrandRoute.name,
               path: 'home-brand-page',
               parent: HomeRoute.name,
             ),
-            _i17.RouteConfig(
+            _i18.RouteConfig(
               HomeContentCreatorRoute.name,
               path: 'home-content-creator-page',
               parent: HomeRoute.name,
             ),
-            _i17.RouteConfig(
+            _i18.RouteConfig(
               ProfilContentCreatorRoute.name,
               path: 'profil-content-creator-page',
               parent: HomeRoute.name,
             ),
           ],
         ),
-        _i17.RouteConfig(
+        _i18.RouteConfig(
           MyProfilBrandRoute.name,
           path: '/my-profil-brand-page',
         ),
-        _i17.RouteConfig(
+        _i18.RouteConfig(
           EditProfilBrandRoute.name,
           path: '/edit-profil-brand-page',
         ),
-        _i17.RouteConfig(
+        _i18.RouteConfig(
           InvitationRoute.name,
           path: '/invitation-page',
         ),
-        _i17.RouteConfig(
+        _i18.RouteConfig(
           CollaborationBrandRoute.name,
           path: '/collaboration-brand-page',
         ),
-        _i17.RouteConfig(
+        _i18.RouteConfig(
           MainSearchRoute.name,
           path: '/main-search-page',
         ),
-        _i17.RouteConfig(
+        _i18.RouteConfig(
           SettingRoute.name,
           path: '/setting-page',
+        ),
+        _i18.RouteConfig(
+          ChatRoute.name,
+          path: '/chat-page',
         ),
       ];
 }
 
 /// generated route for
 /// [_i1.SplashScreenPage]
-class SplashScreenRoute extends _i17.PageRouteInfo<void> {
+class SplashScreenRoute extends _i18.PageRouteInfo<void> {
   const SplashScreenRoute()
       : super(
           SplashScreenRoute.name,
@@ -252,7 +269,7 @@ class SplashScreenRoute extends _i17.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.CheckConnexionPage]
-class CheckConnexionRoute extends _i17.PageRouteInfo<void> {
+class CheckConnexionRoute extends _i18.PageRouteInfo<void> {
   const CheckConnexionRoute()
       : super(
           CheckConnexionRoute.name,
@@ -264,8 +281,8 @@ class CheckConnexionRoute extends _i17.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.RootPage]
-class RootRoute extends _i17.PageRouteInfo<RootRouteArgs> {
-  RootRoute({_i18.Key? key})
+class RootRoute extends _i18.PageRouteInfo<RootRouteArgs> {
+  RootRoute({_i19.Key? key})
       : super(
           RootRoute.name,
           path: '/root-page',
@@ -278,7 +295,7 @@ class RootRoute extends _i17.PageRouteInfo<RootRouteArgs> {
 class RootRouteArgs {
   const RootRouteArgs({this.key});
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   @override
   String toString() {
@@ -288,7 +305,7 @@ class RootRouteArgs {
 
 /// generated route for
 /// [_i4.FirstConnectionPage]
-class FirstConnectionRoute extends _i17.PageRouteInfo<void> {
+class FirstConnectionRoute extends _i18.PageRouteInfo<void> {
   const FirstConnectionRoute()
       : super(
           FirstConnectionRoute.name,
@@ -300,9 +317,9 @@ class FirstConnectionRoute extends _i17.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.SignInPage]
-class SignInRoute extends _i17.PageRouteInfo<SignInRouteArgs> {
+class SignInRoute extends _i18.PageRouteInfo<SignInRouteArgs> {
   SignInRoute({
-    _i18.Key? key,
+    _i19.Key? key,
     required dynamic Function(bool) onLoginCallback,
   }) : super(
           SignInRoute.name,
@@ -322,7 +339,7 @@ class SignInRouteArgs {
     required this.onLoginCallback,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final dynamic Function(bool) onLoginCallback;
 
@@ -334,9 +351,9 @@ class SignInRouteArgs {
 
 /// generated route for
 /// [_i6.RegisterPage]
-class RegisterRoute extends _i17.PageRouteInfo<RegisterRouteArgs> {
+class RegisterRoute extends _i18.PageRouteInfo<RegisterRouteArgs> {
   RegisterRoute({
-    _i18.Key? key,
+    _i19.Key? key,
     required dynamic Function(bool) onLoginCallback,
   }) : super(
           RegisterRoute.name,
@@ -356,7 +373,7 @@ class RegisterRouteArgs {
     required this.onLoginCallback,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final dynamic Function(bool) onLoginCallback;
 
@@ -368,8 +385,8 @@ class RegisterRouteArgs {
 
 /// generated route for
 /// [_i7.HomePage]
-class HomeRoute extends _i17.PageRouteInfo<void> {
-  const HomeRoute({List<_i17.PageRouteInfo>? children})
+class HomeRoute extends _i18.PageRouteInfo<void> {
+  const HomeRoute({List<_i18.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
           path: '/home-page',
@@ -381,7 +398,7 @@ class HomeRoute extends _i17.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.MyProfilBrandPage]
-class MyProfilBrandRoute extends _i17.PageRouteInfo<void> {
+class MyProfilBrandRoute extends _i18.PageRouteInfo<void> {
   const MyProfilBrandRoute()
       : super(
           MyProfilBrandRoute.name,
@@ -394,8 +411,8 @@ class MyProfilBrandRoute extends _i17.PageRouteInfo<void> {
 /// generated route for
 /// [_i9.EditProfilBrandPage]
 class EditProfilBrandRoute
-    extends _i17.PageRouteInfo<EditProfilBrandRouteArgs> {
-  EditProfilBrandRoute({_i18.Key? key})
+    extends _i18.PageRouteInfo<EditProfilBrandRouteArgs> {
+  EditProfilBrandRoute({_i19.Key? key})
       : super(
           EditProfilBrandRoute.name,
           path: '/edit-profil-brand-page',
@@ -408,7 +425,7 @@ class EditProfilBrandRoute
 class EditProfilBrandRouteArgs {
   const EditProfilBrandRouteArgs({this.key});
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   @override
   String toString() {
@@ -418,8 +435,8 @@ class EditProfilBrandRouteArgs {
 
 /// generated route for
 /// [_i10.InvitationPage]
-class InvitationRoute extends _i17.PageRouteInfo<InvitationRouteArgs> {
-  InvitationRoute({_i18.Key? key})
+class InvitationRoute extends _i18.PageRouteInfo<InvitationRouteArgs> {
+  InvitationRoute({_i19.Key? key})
       : super(
           InvitationRoute.name,
           path: '/invitation-page',
@@ -432,7 +449,7 @@ class InvitationRoute extends _i17.PageRouteInfo<InvitationRouteArgs> {
 class InvitationRouteArgs {
   const InvitationRouteArgs({this.key});
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   @override
   String toString() {
@@ -443,8 +460,8 @@ class InvitationRouteArgs {
 /// generated route for
 /// [_i11.CollaborationBrandPage]
 class CollaborationBrandRoute
-    extends _i17.PageRouteInfo<CollaborationBrandRouteArgs> {
-  CollaborationBrandRoute({_i18.Key? key})
+    extends _i18.PageRouteInfo<CollaborationBrandRouteArgs> {
+  CollaborationBrandRoute({_i19.Key? key})
       : super(
           CollaborationBrandRoute.name,
           path: '/collaboration-brand-page',
@@ -457,7 +474,7 @@ class CollaborationBrandRoute
 class CollaborationBrandRouteArgs {
   const CollaborationBrandRouteArgs({this.key});
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   @override
   String toString() {
@@ -467,7 +484,7 @@ class CollaborationBrandRouteArgs {
 
 /// generated route for
 /// [_i12.MainSearchPage]
-class MainSearchRoute extends _i17.PageRouteInfo<void> {
+class MainSearchRoute extends _i18.PageRouteInfo<void> {
   const MainSearchRoute()
       : super(
           MainSearchRoute.name,
@@ -479,7 +496,7 @@ class MainSearchRoute extends _i17.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i13.SettingPage]
-class SettingRoute extends _i17.PageRouteInfo<void> {
+class SettingRoute extends _i18.PageRouteInfo<void> {
   const SettingRoute()
       : super(
           SettingRoute.name,
@@ -490,8 +507,52 @@ class SettingRoute extends _i17.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i14.HomeBrandPage]
-class HomeBrandRoute extends _i17.PageRouteInfo<void> {
+/// [_i14.ChatPage]
+class ChatRoute extends _i18.PageRouteInfo<ChatRouteArgs> {
+  ChatRoute({
+    _i19.Key? key,
+    required String groupId,
+    required String groupName,
+    required String userName,
+  }) : super(
+          ChatRoute.name,
+          path: '/chat-page',
+          args: ChatRouteArgs(
+            key: key,
+            groupId: groupId,
+            groupName: groupName,
+            userName: userName,
+          ),
+        );
+
+  static const String name = 'ChatRoute';
+}
+
+class ChatRouteArgs {
+  const ChatRouteArgs({
+    this.key,
+    required this.groupId,
+    required this.groupName,
+    required this.userName,
+  });
+
+  final _i19.Key? key;
+
+  final String groupId;
+
+  final String groupName;
+
+  final String userName;
+
+  @override
+  String toString() {
+    return 'ChatRouteArgs{key: $key, groupId: $groupId, groupName: $groupName, userName: $userName}';
+  }
+}
+
+/// generated route for
+/// [_i15.HomeBrandPage]
+class HomeBrandRoute extends _i18.PageRouteInfo<void> {
   const HomeBrandRoute()
       : super(
           HomeBrandRoute.name,
@@ -502,8 +563,8 @@ class HomeBrandRoute extends _i17.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i15.HomeContentCreatorPage]
-class HomeContentCreatorRoute extends _i17.PageRouteInfo<void> {
+/// [_i16.HomeContentCreatorPage]
+class HomeContentCreatorRoute extends _i18.PageRouteInfo<void> {
   const HomeContentCreatorRoute()
       : super(
           HomeContentCreatorRoute.name,
@@ -514,8 +575,8 @@ class HomeContentCreatorRoute extends _i17.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i16.ProfilContentCreatorPage]
-class ProfilContentCreatorRoute extends _i17.PageRouteInfo<void> {
+/// [_i17.ProfilContentCreatorPage]
+class ProfilContentCreatorRoute extends _i18.PageRouteInfo<void> {
   const ProfilContentCreatorRoute()
       : super(
           ProfilContentCreatorRoute.name,

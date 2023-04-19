@@ -1,7 +1,7 @@
 {
-    "@@x-loco-version": "1.0.27 20230228-1",
+    "@@x-loco-version": "1.0.27 20230321-1",
     "@@locale": "en",
-    "@@last_modified": "2023-02-15T15:13:46+0100",
+    "@@last_modified": "2023-04-05T16:50:31+0200",
     "@@author": "Soft company",
     "helloWorld": "Hello World !! ✨",
     "@helloWorld": {
@@ -65,5 +65,14 @@
     },
     "register": "Register",
     "@register": {
+    },
+    "closeBt": "Close",
+    "@closeBt": {
+    },
+    "openBt": "Open",
+    "@openBt": {
+    },
+    "popupMatchWith": "You have matched with ",
+    "@popupMatchWith": {
     }
 }
