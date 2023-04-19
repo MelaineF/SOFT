@@ -95,8 +95,8 @@
     "@openBt": {
         "source_text": "Open"
     },
-    "popupMatchWith": "Vous avez matché avec ",
+    "popupMatchWith": "Vous avez matché avec",
     "@popupMatchWith": {
-        "source_text": "You have matched with "
+        "source_text": "You have matched with"
     }
 }

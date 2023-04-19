@@ -72,7 +72,7 @@
     "openBt": "Open",
     "@openBt": {
     },
-    "popupMatchWith": "You have matched with ",
+    "popupMatchWith": "You have matched with",
     "@popupMatchWith": {
     }
 }

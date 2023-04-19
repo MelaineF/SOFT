@@ -23,13 +23,12 @@ class DatabaseService {
 
   // getting user data
   Future<QuerySnapshot> gettingUserData(String email) async {
-    QuerySnapshot snapshot =
-        await userCollection.where('email', isEqualTo: email).get();
+    QuerySnapshot snapshot = await userCollection.where('email', isEqualTo: email).get();
     return snapshot;
   }
 
   // get user groups
-  getUserGroups() async => userCollection.doc(uid).snapshots();
+  Future<DocumentSnapshot> getUserGroups() async => await userCollection.doc(uid).get();
 
   // creating a group
   Future createGroup(String userName, String id, String groupName) async {
@@ -61,6 +60,8 @@ class DatabaseService {
       .collection('messages')
       .orderBy('time')
       .snapshots();
+
+  getGroup(String groupId) async => groupCollection.doc(groupId).get();
 
   Future getGroupAdmin(String groupId) async {
     DocumentReference d = groupCollection.doc(groupId);

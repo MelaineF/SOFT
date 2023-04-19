@@ -67,10 +67,10 @@ class HomePage extends StatelessWidget {
             SalomonBottomBarItem(
               selectedColor: Colors.greenAccent[100],
               icon: const Icon(
-                Icons.android_rounded,
+                Icons.message_rounded,
                 size: 30,
               ),
-              title: const Text('???'),
+              title: const Text('Chats'),
             ),
           ],
         ),

@@ -1,5 +1,6 @@
 import 'package:Swipe/core/firebase/database_service.dart';
 import 'package:Swipe/features/chat/presentation/widget/message_title.dart';
+import 'package:Swipe/features/login_register_feature/data/repository_impl/signin_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -7,13 +8,21 @@ class ChatPage extends StatefulWidget {
   final String groupId;
   final String groupName;
   final String userName;
+  bool create;
 
-  const ChatPage({
+  ChatPage({
     Key? key,
     required this.groupId,
     required this.groupName,
     required this.userName,
-  }) : super(key: key);
+    this.create = true
+  }) : super(key: key) {
+    if (create) {
+      DatabaseService("oCj0Mow6UMgnIBU02J9v7L77x7K2").createGroup(userName, groupId, groupName);
+    } else {
+      DatabaseService("oCj0Mow6UMgnIBU02J9v7L77x7K2").getGroup(groupId);
+    }
+  }
 
   @override
   State<ChatPage> createState() => _ChatPageState();

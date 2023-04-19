@@ -36,7 +36,6 @@ class _SwipeCardState extends State<SwipeCard> {
                   barrierDismissible: false,
                   builder: (BuildContext context) => AlertDialog(
                     title: Text(
-                      /// Todo : change her/him
                       '${AppLocalizations.of(context)!.popupMatchWith} ${widget.creatorName}',
                       style:
                           const TextStyle(fontSize: AppConstants.paddingMedium),
@@ -67,7 +66,7 @@ class _SwipeCardState extends State<SwipeCard> {
                                 ChatRoute(
                                   groupId: nanoid(),
                                   groupName: widget.creatorName + "'s Chat",
-                                  userName: repo.currentUser?.displayName ?? "username",
+                                  userName: repo.currentUser?.displayName ?? "Valentin",
                                 ),
                               );
                             },

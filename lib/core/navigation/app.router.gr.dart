@@ -154,6 +154,7 @@ class AppRouter extends _i18.RootStackRouter {
           groupId: args.groupId,
           groupName: args.groupName,
           userName: args.userName,
+          create: args.create,
         ),
       );
     },
@@ -514,6 +515,7 @@ class ChatRoute extends _i18.PageRouteInfo<ChatRouteArgs> {
     required String groupId,
     required String groupName,
     required String userName,
+    bool create = true,
   }) : super(
           ChatRoute.name,
           path: '/chat-page',
@@ -522,6 +524,7 @@ class ChatRoute extends _i18.PageRouteInfo<ChatRouteArgs> {
             groupId: groupId,
             groupName: groupName,
             userName: userName,
+            create: create,
           ),
         );
 
@@ -534,6 +537,7 @@ class ChatRouteArgs {
     required this.groupId,
     required this.groupName,
     required this.userName,
+    this.create = true,
   });
 
   final _i19.Key? key;
@@ -544,9 +548,11 @@ class ChatRouteArgs {
 
   final String userName;
 
+  final bool create;
+
   @override
   String toString() {
-    return 'ChatRouteArgs{key: $key, groupId: $groupId, groupName: $groupName, userName: $userName}';
+    return 'ChatRouteArgs{key: $key, groupId: $groupId, groupName: $groupName, userName: $userName, create: $create}';
   }
 }
 
