@@ -1,8 +1,10 @@
+import 'package:Swipe/core/firebase/database_service.dart';
 import 'package:Swipe/core/helper/logger.dart';
 import 'package:Swipe/core/widget/custom_outlined_button.dart';
-import 'package:Swipe/features/login_register_feature/data/repository_impl/signup_repository.dart';
+import 'package:Swipe/features/login_register_feature/data/repository_impl/signin_repository.dart';
 import 'package:Swipe/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -127,54 +129,47 @@ class _RegisterPageState extends State<RegisterPage> {
                               label: AppLocalizations.of(context)!.register,
                               onTape: () async {
                                 logger.d('login pressed');
-                                if (_formKey.currentState?.validate() ??
-                                    false) {
+                                if (_formKey.currentState?.validate() ?? false) {
                                   try {
                                     await FirebaseAuth.instance
                                         .createUserWithEmailAndPassword(
                                       email: email.text,
                                       password: password.text,
                                     );
-                                    SignupRepository().currentUser =
-                                        FirebaseAuth.instance.currentUser;
+
+                                    SigninRepository repo = SigninRepository();
+                                    repo.currentUser = FirebaseAuth.instance.currentUser;
+                                    repo.fcmToken = await FirebaseMessaging.instance.getToken();
+
+                                    DatabaseService(repo.currentUser?.uid).savingUserData(firstname.text + " " + lastname.text.toUpperCase(), email.text);
+
+                                    // Set the user logged
+                                    _formKey.currentState?.reset();
+                                    firstname.clear();
+                                    lastname.clear();
+                                    email.clear();
+                                    password.clear();
+                                    MyApp.of(context).authService.authenticated = true;
+
+                                    logger.i('Avant redirection vers home page');
+                                    widget.onLoginCallback.call(true); // redirect to home
+                                    logger.i('Après redirection vers home page');
                                   } on FirebaseAuthException catch (e) {
+                                    String? message;
                                     if (e.code == 'weak-password') {
-                                      logger.e(
-                                        'The password provided is too weak.',
-                                      );
+                                      message = 'The password provided is too weak.';
                                     } else if (e.code ==
                                         'email-already-in-use') {
-                                      logger.e(
-                                        'An account already exists'
-                                        ' for that email.',
-                                      );
+                                      message = 'An account already exists for that email';
+                                    } else {
+                                      message = e.message;
                                     }
+
+                                    logger.e(message);
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message!)));
                                   } catch (e) {
                                     logger.e(e);
                                   }
-
-                                  _formKey.currentState?.reset();
-                                  firstname.clear();
-                                  lastname.clear();
-                                  email.clear();
-                                  password.clear();
-
-                                  // Set the user logged
-                                  MyApp.of(context).authService.authenticated =
-                                      true;
-
-                                  logger.i(
-                                    'Avant redirection vers home page',
-                                  );
-                                  widget.onLoginCallback.call(true);
-                                  logger.i(
-                                    'Après redirection vers home page',
-                                  );
-
-                                  // Routing
-                                  /*context.router.push(
-                                    const HomeRoute(),
-                                  );*/
                                 } else {
                                   logger.e(
                                     'Could not add user, something is missing',

@@ -1,5 +1,4 @@
-import 'package:Swipe/core/firebase/databse_service.dart';
-import 'package:Swipe/core/helper/app_colors.dart';
+import 'package:Swipe/core/firebase/database_service.dart';
 import 'package:Swipe/features/chat/presentation/widget/message_title.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -32,12 +31,12 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   getChatandAdmin() {
-    DatabaseService().getChats(widget.groupId).then((val) {
+    DatabaseService(null).getChats(widget.groupId).then((val) {
       setState(() {
         chats = val;
       });
     });
-    DatabaseService().getGroupAdmin(widget.groupId).then((val) {
+    DatabaseService(null).getGroupAdmin(widget.groupId).then((val) {
       setState(() {
         admin = val;
       });
@@ -132,7 +131,7 @@ class _ChatPageState extends State<ChatPage> {
         'time': DateTime.now().millisecondsSinceEpoch,
       };
 
-      DatabaseService().sendMessage(widget.groupId, chatMessageMap);
+      DatabaseService(null).sendMessage(widget.groupId, chatMessageMap);
       setState(() {
         messageController.clear();
       });

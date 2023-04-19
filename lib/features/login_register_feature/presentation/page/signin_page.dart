@@ -1,8 +1,10 @@
 import 'package:Swipe/core/helper/logger.dart';
 import 'package:Swipe/core/widget/custom_outlined_button.dart';
+import 'package:Swipe/features/login_register_feature/data/repository_impl/signin_repository.dart';
 import 'package:Swipe/features/login_register_feature/data/repository_impl/signup_repository.dart';
 import 'package:Swipe/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -96,49 +98,33 @@ class _SignInPageState extends State<SignInPage> {
                               label: AppLocalizations.of(context)!.connection,
                               onTape: () async {
                                 logger.d('Sign-in pressed');
-                                if (_formKey.currentState?.validate() ??
-                                    false) {
+                                if (_formKey.currentState?.validate() ?? false) {
                                   try {
                                     await FirebaseAuth.instance
-                                        .createUserWithEmailAndPassword(
+                                        .signInWithEmailAndPassword(
                                       email: email.text,
                                       password: password.text,
                                     );
-                                    SignupRepository().currentUser =
-                                        FirebaseAuth.instance.currentUser;
+
+                                    SigninRepository repo = SigninRepository();
+                                    repo.currentUser = FirebaseAuth.instance.currentUser;
+                                    repo.fcmToken = await FirebaseMessaging.instance.getToken();
+
+                                    // Set the user logged
+                                    _formKey.currentState?.reset();
+                                    email.clear();
+                                    password.clear();
+                                    MyApp.of(context).authService.authenticated = true;
+
+                                    logger.i('Avant redirection vers home page');
+                                    widget.onLoginCallback.call(true); // redirect to home
+                                    logger.i('Après redirection vers home page');
                                   } on FirebaseAuthException catch (e) {
-                                    if (e.code == 'weak-password') {
-                                      logger.e(
-                                        'The password provided is too weak.',
-                                      );
-                                    } else if (e.code ==
-                                        'email-already-in-use') {
-                                      logger.e('An account already exists'
-                                          ' for that email.');
-                                    }
+                                    logger.e(e.message);
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message!)));
                                   } catch (e) {
                                     logger.e(e);
                                   }
-
-                                  _formKey.currentState?.reset();
-                                  email.clear();
-                                  password.clear();
-
-                                  // Set the user logged
-                                  MyApp.of(context).authService.authenticated =
-                                      true;
-                                  logger.i(
-                                    'Avant redirection vers home page',
-                                  );
-                                  widget.onLoginCallback.call(true);
-                                  logger.i(
-                                    'Après redirection vers home page',
-                                  );
-
-                                  // Routing
-                                  /*context.router.push(
-                                    const HomeBrandRoute(),
-                                  );*/
                                 } else {
                                   logger.e(
                                     'Could sign-in user, something is missing',

@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class DatabaseService {
   final String? uid;
 
-  DatabaseService({this.uid});
+  DatabaseService(this.uid);
 
   // reference for our collections
   final CollectionReference userCollection =

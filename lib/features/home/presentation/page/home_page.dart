@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
                 height: 50,
               ),
               IconButton(
-                icon: const Icon(Icons.reset_tv_rounded),
+                icon: const Icon(Icons.account_circle),
                 iconSize: 30,
                 onPressed: () {
                   context.router.push(const MyProfilBrandRoute());
@@ -51,26 +51,26 @@ class HomePage extends StatelessWidget {
             SalomonBottomBarItem(
               selectedColor: Colors.amberAccent,
               icon: const Icon(
-                Icons.cancel_rounded,
+                Icons.architecture_rounded,
                 size: 30,
               ),
-              title: const Text('Home\nBrand'),
+              title: const Text('Creators'),
             ),
             SalomonBottomBarItem(
               selectedColor: Colors.blue[200],
               icon: const Icon(
-                Icons.account_balance_wallet_rounded,
+                Icons.amp_stories_rounded,
                 size: 30,
               ),
-              title: const Text('Home\nContent\nCreator'),
+              title: const Text('Brands'),
             ),
             SalomonBottomBarItem(
               selectedColor: Colors.greenAccent[100],
               icon: const Icon(
-                Icons.handshake_rounded,
+                Icons.android_rounded,
                 size: 30,
               ),
-              title: const Text('Profil\nBrand'),
+              title: const Text('???'),
             ),
           ],
         ),

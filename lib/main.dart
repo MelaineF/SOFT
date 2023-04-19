@@ -1,17 +1,28 @@
 import 'package:Swipe/core/navigation/app.router.gr.dart';
 import 'package:Swipe/core/util/auth_service.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'core/helper/app_colors.dart';
+import 'core/helper/logger.dart';
 
 void main() async {
   await dotenv.load(fileName: 'assets/dev.env');
   await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(_handleBackgroundMessage);
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    logger.i('Received FCM message in foreground: ${message.notification?.title}');
+  });
+
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
+}
+
+Future<void> _handleBackgroundMessage(RemoteMessage message) async {
+  logger.i('Handling a background message ${message.messageId}');
+  logger.i(message.data);
 }
 
 class MyApp extends StatefulWidget {

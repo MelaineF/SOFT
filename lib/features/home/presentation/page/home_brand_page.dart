@@ -31,18 +31,22 @@ class _HomeBrandPageState extends State<HomeBrandPage> {
                   case 0:
                     return const SwipeCard(
                       picturePath: 'assets/images/card_humain_1.png',
+                      creatorName: 'Humain 1',
                     );
                   case 1:
                     return const SwipeCard(
                       picturePath: 'assets/images/card_humain_2.png',
+                      creatorName: 'Humain 2',
                     );
                   case 2:
                     return const SwipeCard(
                       picturePath: 'assets/images/card_humain_3.png',
+                      creatorName: 'Humain 3',
                     );
                   default:
                     return const SwipeCard(
                       picturePath: 'assets/images/card_humain_1.png',
+                      creatorName: 'Humain 1',
                     );
                 }
               },
