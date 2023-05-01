@@ -1,3 +1,4 @@
+import 'package:Swipe/features/chat/presentation/page/chat_page.dart';
 import 'package:Swipe/features/commun_feature/presentation/page/setting_page.dart';
 import 'package:Swipe/features/home/presentation/page/home_brand_page.dart';
 import 'package:Swipe/features/home/presentation/page/home_content_creator_page.dart';
@@ -15,8 +16,6 @@ import 'package:Swipe/features/root_feature/presentation/page/root_page.dart';
 import 'package:Swipe/features/search_feature/presentation/page/main_search_page.dart';
 import 'package:Swipe/features/splash_screen_feature/presentation/page/splash_screen_page.dart';
 import 'package:auto_route/annotations.dart';
-
-import '../../features/chat/presentation/page/chat_page.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',

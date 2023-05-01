@@ -1,4 +1,6 @@
 import 'package:Swipe/core/helper/app_constants.dart';
+import 'package:Swipe/core/isar/isar_mixin.dart';
+import 'package:Swipe/core/isar/user_connected.dart';
 import 'package:Swipe/core/navigation/app.router.gr.dart';
 import 'package:Swipe/core/widget/custom_elevated_button.dart';
 import 'package:Swipe/core/widget/custom_outlined_button.dart';
@@ -6,19 +8,26 @@ import 'package:Swipe/features/login_register_feature/data/repository_impl/signi
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:nanoid/nanoid.dart';
 
-class SwipeCard extends StatefulWidget {
-  const SwipeCard({Key? key, required this.picturePath, required this.creatorName}) : super(key: key);
+class SwipeCard extends StatefulWidget with IsarMixin {
+  SwipeCard({
+    Key? key,
+    required this.picturePath,
+    required this.creatorName,
+    required this.userEmail,
+  }) : super(key: key);
 
   final String picturePath;
   final String creatorName;
+  final String userEmail;
 
   @override
   State<SwipeCard> createState() => _SwipeCardState();
 }
 
 class _SwipeCardState extends State<SwipeCard> {
+  String userName = '';
+
   @override
   Widget build(BuildContext context) => ClipRRect(
         borderRadius: BorderRadius.circular(20), // Image border
@@ -36,6 +45,7 @@ class _SwipeCardState extends State<SwipeCard> {
                   barrierDismissible: false,
                   builder: (BuildContext context) => AlertDialog(
                     title: Text(
+                      /// Todo : change her/him
                       '${AppLocalizations.of(context)!.popupMatchWith} ${widget.creatorName}',
                       style:
                           const TextStyle(fontSize: AppConstants.paddingMedium),
@@ -59,14 +69,21 @@ class _SwipeCardState extends State<SwipeCard> {
                             fontSize: 14,
                             width: MediaQuery.of(context).size.width / 3,
                             label: AppLocalizations.of(context)!.openBt,
-                            onTape: () {
+                            onTape: () async {
                               SigninRepository repo = SigninRepository();
                               context.router.pop();
+                              //
+                              await widget.openIsar();
+                              UserConnected? a = await widget
+                                  .isarLocalDB.userConnecteds
+                                  .get(1);
+                              widget.closeIsar();
+
                               context.router.push(
                                 ChatRoute(
-                                  groupId: nanoid(),
-                                  groupName: widget.creatorName + "'s Chat",
-                                  userName: repo.currentUser?.displayName ?? "Valentin",
+                                  groupId: 'PNdS8cGoI1s5ml5eBZ0x',
+                                  groupName: 'Ynov group',
+                                  userName: a?.fullName ?? 'Un user',
                                 ),
                               );
                             },

@@ -104,9 +104,11 @@ class AppRouter extends _i18.RootStackRouter {
       );
     },
     MyProfilBrandRoute.name: (routeData) {
+      final args = routeData.argsAs<MyProfilBrandRouteArgs>(
+          orElse: () => const MyProfilBrandRouteArgs());
       return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i8.MyProfilBrandPage(),
+        child: _i8.MyProfilBrandPage(key: args.key),
       );
     },
     EditProfilBrandRoute.name: (routeData) {
@@ -399,14 +401,26 @@ class HomeRoute extends _i18.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.MyProfilBrandPage]
-class MyProfilBrandRoute extends _i18.PageRouteInfo<void> {
-  const MyProfilBrandRoute()
+class MyProfilBrandRoute extends _i18.PageRouteInfo<MyProfilBrandRouteArgs> {
+  MyProfilBrandRoute({_i19.Key? key})
       : super(
           MyProfilBrandRoute.name,
           path: '/my-profil-brand-page',
+          args: MyProfilBrandRouteArgs(key: key),
         );
 
   static const String name = 'MyProfilBrandRoute';
+}
+
+class MyProfilBrandRouteArgs {
+  const MyProfilBrandRouteArgs({this.key});
+
+  final _i19.Key? key;
+
+  @override
+  String toString() {
+    return 'MyProfilBrandRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

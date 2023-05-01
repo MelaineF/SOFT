@@ -3,11 +3,19 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'package:Swipe/core/firebase/firebase_repository.dart';
+
+import '../../../../core/util/helper_function.dart';
+import '../../../login_register_feature/presentation/page/signin_page.dart';
+
 class MyProfilBrandPage extends StatelessWidget {
-  const MyProfilBrandPage({Key? key}) : super(key: key);
+  MyProfilBrandPage({Key? key}) : super(key: key);
+
+  HelperFunctions _helperFunctions = HelperFunctions();
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) =>
+      Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Center(
@@ -39,6 +47,23 @@ class MyProfilBrandPage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
+                              InkWell(
+                                child: const Icon(
+                                  Icons.logout_outlined,
+                                  size: 30,
+                                ),
+                                onTap: () async {
+                                  await _helperFunctions.signOut();
+                                  context.router.popTop().then((value) =>
+                                      context.router.popTop());
+
+                                  /* context.router.push(
+                                    SignInRoute(
+                                      onLoginCallback: (_) {},
+                                    ),
+                                  );*/
+                                },
+                              ),
                               InkWell(
                                 child: const Icon(
                                   Icons.handshake_outlined,
@@ -123,14 +148,17 @@ class MyProfilBrandPage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.9,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * 0.9,
                     height: 70,
                     child: const Text(
                       'bio :  Decathlon est une enseigne spécialisée dans la '
-                      'grande distribution de matériel et d'
-                      '\'équipements sportifs. Elle vend aussi bien des marques'
-                      ' indépendantes que des articles conçus et produits'
-                      ' sous ses propres marques hghghfh jffhjgfhhf jhjgfghj ',
+                          'grande distribution de matériel et d'
+                          '\'équipements sportifs. Elle vend aussi bien des marques'
+                          ' indépendantes que des articles conçus et produits'
+                          ' sous ses propres marques hghghfh jffhjgfhhf jhjgfghj ',
                       style: TextStyle(fontSize: 12),
                       textAlign: TextAlign.left,
                       overflow: TextOverflow.fade,
@@ -159,7 +187,10 @@ class MyProfilBrandPage extends StatelessWidget {
                     ],
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * 1,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * 1,
                     height: 100,
                     color: Colors.grey[300],
                     child: Row(
@@ -213,63 +244,66 @@ class MyProfilBrandPage extends StatelessWidget {
       );
 }
 
-Widget _theCollabs() => GridView.builder(
+Widget _theCollabs() =>
+    GridView.builder(
       gridDelegate:
-          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
+      const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
       itemCount: 10,
-      itemBuilder: (BuildContext context, int index) => SizedBox(
-        height: 50,
-        child: Card(
-          semanticContainer: true,
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          color: const Color(0xFFEBEBEB),
-          elevation: 8.0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(5),
-                child: SizedBox(
-                  width: 80,
-                  height: 80,
-                  child: ClipOval(
-                    child: SizedBox.fromSize(
-                      size: const Size.fromRadius(8), // Image radius
-                      child: Image.network(
-                        'https://contents.mediadecathlon.com/b69326/k\$9098d7603315c87b5e845e864c21ecd7/1180x0/256pt256/512xcr512/default.png?format=auto&quality=80',
-                        //  height: 150.0,
-                        //  width: 150.0,
+      itemBuilder: (BuildContext context, int index) =>
+          SizedBox(
+            height: 50,
+            child: Card(
+              semanticContainer: true,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              color: const Color(0xFFEBEBEB),
+              elevation: 8.0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: SizedBox(
+                      width: 80,
+                      height: 80,
+                      child: ClipOval(
+                        child: SizedBox.fromSize(
+                          size: const Size.fromRadius(8), // Image radius
+                          child: Image.network(
+                            'https://contents.mediadecathlon.com/b69326/k\$9098d7603315c87b5e845e864c21ecd7/1180x0/256pt256/512xcr512/default.png?format=auto&quality=80',
+                            //  height: 150.0,
+                            //  width: 150.0,
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.all(5),
-                child: Text(
-                  ' X ',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(5),
-                child: SizedBox(
-                  width: 80,
-                  height: 80,
-                  child: ClipOval(
-                    child: SizedBox.fromSize(
-                      size: const Size.fromRadius(48), // Image radius
-                      child: Image.asset(
-                        'assets/images/Untitled3.png',
-                        //   height: 150.0,
-                        //   width: 150.0,
+                  const Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Text(
+                      ' X ',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: SizedBox(
+                      width: 80,
+                      height: 80,
+                      child: ClipOval(
+                        child: SizedBox.fromSize(
+                          size: const Size.fromRadius(48), // Image radius
+                          child: Image.asset(
+                            'assets/images/Untitled3.png',
+                            //   height: 150.0,
+                            //   width: 150.0,
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
     );

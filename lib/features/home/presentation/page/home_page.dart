@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
                 icon: const Icon(Icons.account_circle),
                 iconSize: 30,
                 onPressed: () {
-                  context.router.push(const MyProfilBrandRoute());
+                  context.router.push(MyProfilBrandRoute());
                 },
               ),
             ],

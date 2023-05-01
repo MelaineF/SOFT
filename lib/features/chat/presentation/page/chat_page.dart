@@ -10,19 +10,27 @@ class ChatPage extends StatefulWidget {
   final String userName;
   bool create;
 
-  ChatPage({
-    Key? key,
-    required this.groupId,
-    required this.groupName,
-    required this.userName,
-    this.create = true
-  }) : super(key: key) {
+  ChatPage(
+      {Key? key,
+      required this.groupId,
+      required this.groupName,
+      required this.userName,
+      this.create = true})
+      : super(key: key);
+
+  /* {
+    DatabaseService('76TVeH2u6babFSj0ao4LuFH0bgI3')
+        .createGroup(userName, groupId, groupName);
+  }*/
+
+  /* {
     if (create) {
-      DatabaseService("oCj0Mow6UMgnIBU02J9v7L77x7K2").createGroup(userName, groupId, groupName);
+      DatabaseService('oCj0Mow6UMgnIBU02J9v7L77x7K2')
+          .createGroup(userName, groupId, groupName);
     } else {
-      DatabaseService("oCj0Mow6UMgnIBU02J9v7L77x7K2").getGroup(groupId);
+      DatabaseService('oCj0Mow6UMgnIBU02J9v7L77x7K2').getGroup(groupId);
     }
-  }
+  }*/
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -118,18 +126,28 @@ class _ChatPageState extends State<ChatPage> {
 
   chatMessages() => StreamBuilder(
         stream: chats,
-        builder: (BuildContext context, AsyncSnapshot snapshot) => snapshot
-                .hasData
-            ? ListView.builder(
-                itemCount: snapshot.data.docs.length,
-                itemBuilder: (BuildContext context, int index) => MessageTile(
-                  message: snapshot.data.docs[index]['message'],
-                  sender: snapshot.data.docs[index]['sender'],
-                  sentByMe:
-                      widget.userName == snapshot.data.docs[index]['sender'],
-                ),
-              )
-            : Container(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) =>
+            snapshot.hasData
+                ? ListView.builder(
+                    itemCount: snapshot.data.docs.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      int timestamp = snapshot.data.docs[index]['time'];
+                      DateTime dateTime =
+                          DateTime.fromMillisecondsSinceEpoch(timestamp);
+                      // Formater l'heure et les minutes au format "HH:MM"
+                      String formattedTime =
+                          '${dateTime.hour.toString().padLeft(2, '0')}'
+                          ':${dateTime.minute.toString().padLeft(2, '0')}';
+
+                      return MessageTile(
+                        message: snapshot.data.docs[index]['message'],
+                        sender: snapshot.data.docs[index]['sender'],
+                        sentByMe: widget.userName ==
+                            snapshot.data.docs[index]['sender'],
+                        time: formattedTime,
+                      );
+                    })
+                : Container(),
       );
 
   sendMessage() {

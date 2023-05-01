@@ -1,9 +1,13 @@
+import 'package:Swipe/core/isar/user_connected.dart';
+import 'package:Swipe/core/isar/user_isar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class DatabaseService {
-  final String? uid;
+import '../isar/group_isar.dart';
 
+class DatabaseService {
   DatabaseService(this.uid);
+
+  final String? uid;
 
   // reference for our collections
   final CollectionReference userCollection =
@@ -23,12 +27,42 @@ class DatabaseService {
 
   // getting user data
   Future<QuerySnapshot> gettingUserData(String email) async {
-    QuerySnapshot snapshot = await userCollection.where('email', isEqualTo: email).get();
+    QuerySnapshot snapshot =
+        await userCollection.where('email', isEqualTo: email).get();
     return snapshot;
   }
 
   // get user groups
-  Future<DocumentSnapshot> getUserGroups() async => await userCollection.doc(uid).get();
+  Future<DocumentSnapshot> getUserGroups() async =>
+      await userCollection.doc(uid).get();
+
+  Future<List<UserConnected>> getConnectedUser() async {
+    QuerySnapshot<Object?> data = await userCollection.get();
+    List<QueryDocumentSnapshot<Object?>> snapshots = data.docs;
+
+    List<UserConnected> userConnectedList =
+        snapshots.map((QueryDocumentSnapshot<Object?> snapshot) {
+      Map<String, dynamic> json = snapshot.data() as Map<String, dynamic>;
+      json['id'] = snapshot.id;
+      return UserConnected.fromJson(json);
+    }).toList();
+
+    return userConnectedList;
+  }
+
+  Future<List<UserIsar>> getUsers() async {
+    QuerySnapshot<Object?> data = await userCollection.get();
+    List<QueryDocumentSnapshot<Object?>> snapshots = data.docs;
+
+    List<UserIsar> userConnectedList =
+        snapshots.map((QueryDocumentSnapshot<Object?> snapshot) {
+      Map<String, dynamic> json = snapshot.data() as Map<String, dynamic>;
+      json['id'] = snapshot.id;
+      return UserIsar.fromJson(json);
+    }).toList();
+
+    return userConnectedList;
+  }
 
   // creating a group
   Future createGroup(String userName, String id, String groupName) async {
@@ -62,6 +96,17 @@ class DatabaseService {
       .snapshots();
 
   getGroup(String groupId) async => groupCollection.doc(groupId).get();
+
+  Future<List<GroupIsar>> getGroups() async =>
+      groupCollection.get().then((querySnapshot) {
+        List<GroupIsar> groups = [];
+        querySnapshot.docs.forEach((doc) {
+          Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+          GroupIsar group = GroupIsar.fromJson(data);
+          groups.add(group);
+        });
+        return groups;
+      });
 
   Future getGroupAdmin(String groupId) async {
     DocumentReference d = groupCollection.doc(groupId);

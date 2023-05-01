@@ -1,6 +1,8 @@
 import 'package:Swipe/core/firebase/database_service.dart';
 import 'package:Swipe/core/helper/logger.dart';
+import 'package:Swipe/core/util/helper_function.dart';
 import 'package:Swipe/core/widget/custom_outlined_button.dart';
+import 'package:Swipe/core/widget/show_snackbar.widget.dart';
 import 'package:Swipe/features/login_register_feature/data/repository_impl/signin_repository.dart';
 import 'package:Swipe/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,6 +22,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  bool _isLoading = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController email = TextEditingController();
   TextEditingController firstname = TextEditingController();
@@ -126,47 +129,91 @@ class _RegisterPageState extends State<RegisterPage> {
                               },
                             ),
                             CustomOutlinedButtonButtonWidget(
+                              loading: _isLoading,
                               label: AppLocalizations.of(context)!.register,
                               onTape: () async {
-                                logger.d('login pressed');
-                                if (_formKey.currentState?.validate() ?? false) {
+                                if (_formKey.currentState?.validate() ??
+                                    false) {
+                                  setState(() {
+                                    _isLoading = true;
+                                  });
+
                                   try {
                                     await FirebaseAuth.instance
                                         .createUserWithEmailAndPassword(
                                       email: email.text,
                                       password: password.text,
+                                    )
+                                        .then(
+                                      (UserCredential value) async {
+                                        if (value.user != null) {
+                                          SigninRepository repo =
+                                              SigninRepository()
+                                                ..currentUser = FirebaseAuth
+                                                    .instance.currentUser
+                                                ..fcmToken =
+                                                    await FirebaseMessaging
+                                                        .instance
+                                                        .getToken();
+
+                                          DatabaseService(repo.currentUser?.uid)
+                                              .savingUserData(
+                                            '${firstname.text} ${lastname.text.toUpperCase()}',
+                                            email.text,
+                                          );
+
+                                          // saving the shared preference state
+                                          await HelperFunctions
+                                              .saveUserLoggedInStatus(true);
+                                          await HelperFunctions.saveUserEmailSF(
+                                              email.text);
+                                          await HelperFunctions.saveUserNameSF(
+                                              firstname.text);
+
+                                          // Set the user logged
+                                          _formKey.currentState?.reset();
+                                          firstname.clear();
+                                          lastname.clear();
+                                          email.clear();
+                                          password.clear();
+                                          MyApp.of(context)
+                                              .authService
+                                              .authenticated = true;
+
+                                          widget.onLoginCallback
+                                              .call(true); // redirect to home
+                                        } else {
+                                          showSnackbar(
+                                            context,
+                                            Colors.red,
+                                            value,
+                                          );
+                                          setState(() {
+                                            _isLoading = false;
+                                          });
+                                        }
+                                      },
                                     );
-
-                                    SigninRepository repo = SigninRepository();
-                                    repo.currentUser = FirebaseAuth.instance.currentUser;
-                                    repo.fcmToken = await FirebaseMessaging.instance.getToken();
-
-                                    DatabaseService(repo.currentUser?.uid).savingUserData(firstname.text + " " + lastname.text.toUpperCase(), email.text);
-
-                                    // Set the user logged
-                                    _formKey.currentState?.reset();
-                                    firstname.clear();
-                                    lastname.clear();
-                                    email.clear();
-                                    password.clear();
-                                    MyApp.of(context).authService.authenticated = true;
-
-                                    logger.i('Avant redirection vers home page');
-                                    widget.onLoginCallback.call(true); // redirect to home
-                                    logger.i('Après redirection vers home page');
                                   } on FirebaseAuthException catch (e) {
                                     String? message;
                                     if (e.code == 'weak-password') {
-                                      message = 'The password provided is too weak.';
+                                      message =
+                                          'The password provided is too weak.';
                                     } else if (e.code ==
                                         'email-already-in-use') {
-                                      message = 'An account already exists for that email';
+                                      message =
+                                          'An account already exists for that email';
                                     } else {
                                       message = e.message;
                                     }
 
+                                    setState(() {
+                                      _isLoading = false;
+                                    });
                                     logger.e(message);
-                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message!)));
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text(message!)),
+                                    );
                                   } catch (e) {
                                     logger.e(e);
                                   }
